@@ -1,5 +1,5 @@
 /** Binary operator types used in formula expression trees. */
-export type BinaryOperator = 'AND' | 'OR' | 'XOR' | 'NAND' | 'NOR' | 'XNOR';
+export type BinaryOperator = 'AND' | 'OR' | 'XOR';
 
 /**
  * A node in a Boolean formula expression tree.

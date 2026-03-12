@@ -22,7 +22,7 @@ interface DifficultyConfig {
 const DIFFICULTY_CONFIG: Record<Difficulty, DifficultyConfig> = {
   easy:   { vars: ['x', 'y'],             maxDepth: 2, ops: ['AND', 'OR'] },
   medium: { vars: ['x', 'y', 'z'],        maxDepth: 3, ops: ['AND', 'OR', 'XOR'] },
-  hard:   { vars: ['x', 'y', 'z', 'w'],   maxDepth: 4, ops: ['AND', 'OR', 'XOR', 'NAND', 'NOR', 'XNOR'] },
+  hard:   { vars: ['x', 'y', 'z', 'w'],   maxDepth: 4, ops: ['AND', 'OR', 'XOR'] },
 };
 
 // ---------------------------------------------------------------------------

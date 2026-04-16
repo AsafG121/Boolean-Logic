@@ -55,3 +55,17 @@ export const ROUNDS_PER_SESSION = 10;
 
 /** Duration of each round in seconds. */
 export const ROUND_DURATION_SECONDS = 120;
+
+/** One step in a step-by-step evaluation solution. */
+export interface EvaluationStep {
+  readonly node:  FormulaNode;
+  readonly value: boolean;
+}
+
+/** One step in an equivalence proof chain. */
+export interface EquivalenceProofStep {
+  readonly formula:   FormulaNode;
+  readonly ruleName:  string;
+  /** The specific sub-expression the rule was applied to (absent on the first/Given step). */
+  readonly on?:       FormulaNode;
+}

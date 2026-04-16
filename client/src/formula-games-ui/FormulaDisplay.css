@@ -1,0 +1,41 @@
+.formula-display {
+  display:     flex;
+  align-items: baseline;
+  gap:         0.75rem;
+  font-size:   2rem;
+  font-family: 'Georgia', serif;
+  line-height: 2.2;
+}
+
+.formula-label {
+  font-size:   1rem;
+  font-weight: bold;
+  color:       #555;
+  min-width:   1.2rem;
+}
+
+.formula-root {
+  display: inline;
+}
+
+.formula-var {
+  font-style: italic;
+  color:      #1a1a1a;
+}
+
+/* NOT gate: horizontal bar on top — standard boolean algebra overline notation.
+   display: inline-block is required so the border-top spans the full width of
+   the content, including nested spans (e.g. NOT of a compound expression). */
+.formula-not {
+  display:        inline-block;
+  border-top:     2px solid currentColor;
+  padding-top:    2px;
+  vertical-align: baseline;
+  line-height:    0.85;
+}
+
+.formula-op {
+  margin:     0 0.35em;
+  font-style: normal;
+  color:      #333;
+}

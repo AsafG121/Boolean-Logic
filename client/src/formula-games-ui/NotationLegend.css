@@ -1,0 +1,84 @@
+.notation-legend-container {
+  position: relative;
+  display:  inline-block;
+}
+
+.notation-legend-button {
+  display:       flex;
+  align-items:   center;
+  padding:       0.5rem 1rem;
+  font-size:     0.88rem;
+  font-weight:   500;
+  border:        none;
+  border-radius: 6px;
+  background:    #0f766e;
+  color:         #fff;
+  cursor:        pointer;
+  white-space:   nowrap;
+  transition:    background 0.1s;
+}
+
+.notation-legend-button:hover {
+  background: #0c6560;
+}
+
+/* Panel slides out of the button downward */
+.notation-legend-panel {
+  position:         absolute;
+  top:              calc(100% + 4px);
+  left:             0;
+  background:       #fff;
+  border:           1px solid #ccc;
+  border-radius:    6px;
+  box-shadow:       0 4px 14px rgba(0, 0, 0, 0.12);
+  z-index:          200;
+  overflow:         hidden;
+  transform-origin: top center;
+  transform:        scaleY(0);
+  opacity:          0;
+  transition:       transform 0.18s ease, opacity 0.15s ease;
+}
+
+.notation-legend-container--open .notation-legend-panel {
+  transform: scaleY(1);
+  opacity:   1;
+}
+
+/* Table */
+.notation-legend-table {
+  border-collapse: collapse;
+  font-size:       0.88rem;
+  white-space:     nowrap;
+}
+
+.notation-legend-table th,
+.notation-legend-table td {
+  border:     1px solid #ddd;
+  padding:    0.5rem 1rem;
+  text-align: center;
+}
+
+.notation-legend-table thead th {
+  background:  #f5f7fa;
+  font-weight: 600;
+  color:       #333;
+}
+
+.notation-legend-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* Mathematical column — serif font to match formula display */
+.notation-legend-math {
+  font-family: 'Georgia', serif;
+  font-size:   1rem;
+}
+
+/* Overline for NOT x in the mathematical column */
+.notation-legend-overline {
+  display:        inline-block;
+  border-top:     2px solid currentColor;
+  padding-top:    1px;
+  font-style:     italic;
+  font-family:    'Georgia', serif;
+}

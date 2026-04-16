@@ -1,0 +1,71 @@
+.draft-keyboard-container {
+  position:       absolute;
+  bottom:         calc(100% + 4px);
+  left:           0;
+  right:          0;
+  z-index:        300;
+  display:        flex;
+  flex-direction: column;
+  gap:            0.4rem;
+  padding:        0.75rem 1rem;
+  background:     #f5f7fa;
+  border:         1px solid #dde1e9;
+  border-radius:  8px;
+  box-shadow:     0 -4px 16px rgba(0, 0, 0, 0.10);
+}
+
+.draft-keyboard-row {
+  display:     flex;
+  align-items: center;
+  gap:         0.6rem;
+}
+
+.draft-keyboard-row-label {
+  width:       5.5rem;
+  flex-shrink: 0;
+  font-size:   0.78rem;
+  font-weight: 600;
+  color:       #666;
+  text-align:  right;
+}
+
+.draft-keyboard-keys {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.3rem;
+}
+
+.draft-keyboard-key {
+  min-width:     2.2rem;
+  padding:       0.3rem 0.55rem;
+  font-size:     0.9rem;
+  font-family:   'Georgia', serif;
+  border:        1px solid #c8cdd6;
+  border-radius: 4px;
+  background:    #fff;
+  color:         #222;
+  cursor:        pointer;
+  transition:    background 0.08s, transform 0.05s;
+  user-select:   none;
+  line-height:   1.4;
+}
+
+.draft-keyboard-key:hover {
+  background: #e8edf5;
+}
+
+.draft-keyboard-key:active {
+  background:  #d8e0ef;
+  transform:   scale(0.94);
+}
+
+.draft-keyboard-key--wide {
+  min-width: 3.2rem;
+}
+
+.draft-keyboard-key--backspace {
+  min-width:  3.4rem;
+  color:      #c0392b;
+  font-size:  1rem;
+  font-family: inherit;
+}

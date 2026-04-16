@@ -1,0 +1,127 @@
+.round-review-container {
+  display:        flex;
+  flex-direction: column;
+  gap:            1.25rem;
+  padding:        2.5rem 5%;
+  width:          100%;
+  box-sizing:     border-box;
+  min-height:     100vh;
+}
+
+/* ─── Notation bar ─────────────────────────────────────────────────────────── */
+
+.round-review-notation-bar {
+  display:         flex;
+  gap:             0.75rem;
+  align-items:     flex-start;
+  justify-content: center;
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+
+.round-review-header {
+  display:     flex;
+  align-items: center;
+  gap:         1rem;
+  flex-wrap:   wrap;
+}
+
+.round-review-back-button {
+  padding:       0.45rem 1rem;
+  font-size:     0.9rem;
+  font-weight:   600;
+  background:    #e8e8e8;
+  border:        none;
+  border-radius: 6px;
+  cursor:        pointer;
+  color:         #333;
+  transition:    background 0.15s;
+}
+
+.round-review-back-button:hover { background: #d4d4d4; }
+
+.round-review-title {
+  font-size:   1.15rem;
+  font-weight: 600;
+  color:       #444;
+  flex:        1;
+}
+
+.round-review-badge {
+  font-size:     0.9rem;
+  font-weight:   bold;
+  padding:       0.3rem 0.8rem;
+  border-radius: 12px;
+}
+
+.round-review-badge.badge-correct {
+  background: #d4edda;
+  color:      #1a5c2a;
+}
+
+.round-review-badge.badge-wrong {
+  background: #fde8e8;
+  color:      #8a0000;
+}
+
+/* ─── Formula area ─────────────────────────────────────────────────────────── */
+
+.round-review-formula-area {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             0.75rem;
+  min-height:      160px;
+  justify-content: center;
+  padding:         0.5rem 0;
+}
+
+.round-review-evaluation-row {
+  display:     flex;
+  align-items: baseline;
+  gap:         0.6rem;
+  font-size:   1.6rem;
+  font-family: 'Georgia', serif;
+  flex-wrap:   wrap;
+}
+
+.round-review-equals-sign {
+  color:       #555;
+  font-weight: bold;
+}
+
+.round-review-blank {
+  font-size:     1.6rem;
+  color:         #aaa;
+  font-style:    italic;
+  border-bottom: 2px solid #ccc;
+  min-width:     1.5rem;
+  text-align:    center;
+}
+
+/* ─── Solution area ────────────────────────────────────────────────────────── */
+
+.round-review-solution-area {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            1rem;
+}
+
+.round-review-solution-button {
+  padding:       0.65rem 2rem;
+  font-size:     1rem;
+  font-weight:   600;
+  border:        2px solid #0f766e;
+  border-radius: 6px;
+  background:    #fff;
+  color:         #0f766e;
+  cursor:        pointer;
+  transition:    background 0.15s, color 0.15s;
+}
+
+.round-review-solution-button:hover,
+.round-review-solution-button.active {
+  background: #0f766e;
+  color:      #fff;
+}

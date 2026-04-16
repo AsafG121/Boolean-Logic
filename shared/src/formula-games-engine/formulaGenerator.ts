@@ -35,15 +35,15 @@ function randomElement<T>(arr: readonly T[]): T {
 
 function collectVariables(node: FormulaNode, out: Set<string>): void {
   switch (node.type) {
-    case 'variable': 
-      out.add(node.name);                                   
+    case 'variable':
+      out.add(node.name);
       break;
-    case 'not':      
-      collectVariables(node.operand, out);                  
+    case 'not':
+      collectVariables(node.operand, out);
       break;
-    case 'binary':   
+    case 'binary':
       collectVariables(node.left, out);
-      collectVariables(node.right, out);                    
+      collectVariables(node.right, out);
       break;
   }
 }
@@ -104,12 +104,12 @@ function generateRandomAssignment(variables: readonly string[]): VariableAssignm
 // ---------------------------------------------------------------------------
 
 /**
- * Attempts to apply De Morgan's law at the root:
+ * Applies De Morgan's law (forward) at the root of a NOT node:
  *   NOT(A AND B) → NOT(A) OR  NOT(B)
  *   NOT(A OR  B) → NOT(A) AND NOT(B)
  * Returns the original node unchanged if the law does not apply.
  */
-function applyDeMorgan(node: FormulaNode): FormulaNode {
+function applyDeMorganForward(node: FormulaNode): FormulaNode {
   if (node.type === 'not' && node.operand.type === 'binary') {
     const inner = node.operand;
     if (inner.operator === 'AND') {
@@ -131,39 +131,83 @@ function applyDeMorgan(node: FormulaNode): FormulaNode {
 }
 
 /**
- * Recursively applies equivalence-preserving transformations bottom-up so
- * inner sub-expressions are transformed before their parents:
- *   - NOT nodes: apply De Morgan's law whenever the pattern matches.
- *   - binary nodes: randomly swap left/right (commutativity, ~60 % chance).
+ * Returns the logical negation of `node`, cancelling a leading NOT when one
+ * is already present:  negOf(NOT(A)) = A,  negOf(A) = NOT(A).
+ * Used when building reverse-De-Morgan results to avoid double negations.
  */
-function applyTransformationsRecursively(node: FormulaNode): FormulaNode {
+function negOf(node: FormulaNode): FormulaNode {
+  return node.type === 'not' ? node.operand : { type: 'not', operand: node };
+}
+
+/**
+ * Recursively applies equivalence-preserving transformations bottom-up.
+ * Which transformations are available depends on the difficulty level:
+ *
+ *  easy   – forward De Morgan (always) + general reverse De Morgan (~40 %)
+ *  medium – same as easy, plus commutativity (~60 %)
+ *  hard   – same as medium, plus XOR expansion (~50 % on XOR nodes)
+ */
+function applyTransformationsRecursively(
+  node:       FormulaNode,
+  difficulty: Difficulty,
+): FormulaNode {
   switch (node.type) {
     case 'variable':
       return node;
 
     case 'not': {
-      const operand = applyTransformationsRecursively(node.operand);
+      const operand     = applyTransformationsRecursively(node.operand, difficulty);
       const notNode: FormulaNode = { type: 'not', operand };
-      const deMorganResult = applyDeMorgan(notNode);
-      return deMorganResult !== notNode ? deMorganResult : notNode;
+      const expanded    = applyDeMorganForward(notNode);
+      return expanded !== notNode ? expanded : notNode;
     }
 
     case 'binary': {
-      const left  = applyTransformationsRecursively(node.left);
-      const right = applyTransformationsRecursively(node.right);
-      return Math.random() < 0.6
-        ? { ...node, left: right, right: left }
-        : { ...node, left, right };
+      const left  = applyTransformationsRecursively(node.left,  difficulty);
+      const right = applyTransformationsRecursively(node.right, difficulty);
+      const { operator } = node;
+
+      // Hard only: XOR expansion  A XOR B → (A OR B) AND NOT(A AND B)
+      if (difficulty === 'hard' && operator === 'XOR' && Math.random() < 0.5) {
+        return {
+          type: 'binary', operator: 'AND',
+          left:  { type: 'binary', operator: 'OR',  left, right },
+          right: { type: 'not', operand: { type: 'binary', operator: 'AND', left, right } },
+        };
+      }
+
+      // All levels: general reverse De Morgan for AND / OR (~40 % chance)
+      //   A AND B → NOT( negOf(A) OR  negOf(B) )
+      //   A OR  B → NOT( negOf(A) AND negOf(B) )
+      if ((operator === 'AND' || operator === 'OR') && Math.random() < 0.4) {
+        return {
+          type: 'not',
+          operand: {
+            type:     'binary',
+            operator: operator === 'AND' ? 'OR' : 'AND',
+            left:     negOf(left),
+            right:    negOf(right),
+          },
+        };
+      }
+
+      // Medium / hard only: commutativity (~60 % chance)
+      if (difficulty !== 'easy' && Math.random() < 0.6) {
+        return { ...node, left: right, right: left };
+      }
+
+      return { ...node, left, right };
     }
   }
 }
 
 /**
  * Creates a syntactically different but logically equivalent formula by
- * applying De Morgan's law and commutativity throughout the entire tree.
+ * applying difficulty-appropriate equivalence transformations throughout
+ * the entire tree.
  */
-function makeEquivalentVariant(formula: Formula): Formula {
-  return makeFormula(applyTransformationsRecursively(formula.root));
+function makeEquivalentVariant(formula: Formula, difficulty: Difficulty): Formula {
+  return makeFormula(applyTransformationsRecursively(formula.root, difficulty));
 }
 
 // ---------------------------------------------------------------------------
@@ -192,7 +236,7 @@ export function generateEquivalenceRound(
   const formulaA = generateRandomFormula(difficulty);
 
   if (targetEquivalent) {
-    const formulaB = makeEquivalentVariant(formulaA);
+    const formulaB = makeEquivalentVariant(formulaA, difficulty);
     return { formulaA, formulaB, areEquivalent: true };
   }
 

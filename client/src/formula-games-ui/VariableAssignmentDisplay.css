@@ -1,0 +1,30 @@
+.variable-assignment-display {
+  display:     flex;
+  gap:         1.5rem;
+  font-size:   1.4rem;
+  font-family: 'Georgia', serif;
+  padding:     0.4rem 0;
+  flex-wrap:   wrap;
+}
+
+.assignment-entry {
+  display:     inline-flex;
+  align-items: center;
+  gap:         0.3em;
+}
+
+.assignment-variable {
+  font-style: italic;
+  color:      #1a1a1a;
+}
+
+.assignment-equals {
+  color: #666;
+}
+
+.assignment-value {
+  font-weight: bold;
+}
+
+.value-true  { color: #2a7a2a; }
+.value-false { color: #a00000; }

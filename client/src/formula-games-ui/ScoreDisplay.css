@@ -1,0 +1,38 @@
+.score-solo,
+.score-online {
+  display:     flex;
+  align-items: center;
+  gap:         0.6rem;
+}
+
+.score-label {
+  font-size: 1.05rem;
+  color:     #666;
+}
+
+.score-value {
+  font-weight: bold;
+  font-size:   1.4rem;
+}
+
+.score-online { gap: 1.2rem; }
+
+.score-player {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            0.1rem;
+}
+
+.score-name {
+  font-size: 0.78rem;
+  color:     #666;
+}
+
+.score-value.you { color: #1a6bb5; }
+.score-value.opponent { color: #b51a1a; }
+
+.score-vs {
+  font-size: 0.85rem;
+  color:     #bbb;
+}

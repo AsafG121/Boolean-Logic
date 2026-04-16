@@ -1,0 +1,131 @@
+.session-summary {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            2rem;
+  padding:        2rem;
+}
+
+.summary-title {
+  font-size:   2.5rem;
+  margin:      0;
+  font-weight: bold;
+}
+
+.summary-score-block {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            0.25rem;
+}
+
+.summary-score-label {
+  font-size:      1rem;
+  color:          #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.summary-score-value {
+  font-size:   3.5rem;
+  font-weight: bold;
+  color:       #1a6bb5;
+}
+
+.summary-scores-row {
+  display:     flex;
+  align-items: center;
+  gap:         2.5rem;
+}
+
+.summary-player {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            0.3rem;
+}
+
+.summary-player-name {
+  font-size: 1rem;
+  color:     #555;
+}
+
+.summary-player-score {
+  font-size:   2.5rem;
+  font-weight: bold;
+  color:       #444;
+}
+
+.summary-player.winner .summary-player-score { color: #2a7a2a; }
+
+.summary-vs {
+  font-size: 1rem;
+  color:     #bbb;
+}
+
+/* ─── Rounds table ─────────────────────────────────────────────────────────── */
+
+.summary-rounds-table {
+  border-collapse: collapse;
+  font-size:       1.05rem;
+  min-width:       320px;
+}
+
+.summary-rounds-table th,
+.summary-rounds-table td {
+  padding:    0.55rem 1.2rem;
+  text-align: center;
+}
+
+.summary-rounds-table thead tr {
+  border-bottom: 2px solid #ccc;
+  color:         #555;
+  font-size:     0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-rounds-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-rounds-table tbody tr.row-clickable {
+  cursor:     pointer;
+  transition: background 0.12s;
+}
+
+.summary-rounds-table tbody tr.row-clickable:hover {
+  background: #f0f4ff;
+}
+
+.summary-rounds-table .row-review-link {
+  color:       #1a6bb5;
+  font-size:   0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.summary-rounds-table tbody tr.row-correct  td:last-child { color: #2a7a2a; font-weight: bold; }
+.summary-rounds-table tbody tr.row-incorrect td:last-child { color: #a00000; font-weight: bold; }
+
+/* ─── Actions ──────────────────────────────────────────────────────────────── */
+
+.summary-actions {
+  display: flex;
+  gap:     1rem;
+}
+
+.summary-button {
+  padding:       0.8rem 2.4rem;
+  font-size:     1.1rem;
+  font-weight:   bold;
+  border:        none;
+  border-radius: 6px;
+  cursor:        pointer;
+  transition:    opacity 0.15s;
+}
+
+.summary-button:hover { opacity: 0.85; }
+
+.summary-button.primary   { background: #1a6bb5; color: #fff; }
+.summary-button.secondary { background: #e0e0e0; color: #333; }

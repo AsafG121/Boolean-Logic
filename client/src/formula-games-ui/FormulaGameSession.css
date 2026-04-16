@@ -1,0 +1,67 @@
+.formula-game-session-container {
+  display:        flex;
+  flex-direction: column;
+  gap:            1.25rem;
+  padding:        2.5rem 5%;
+  width:          100%;
+  box-sizing:     border-box;
+  min-height:     100vh;
+}
+
+.formula-game-session-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+}
+
+.formula-game-session-round-label {
+  font-size:   1.1rem;
+  color:       #555;
+  font-weight: 500;
+}
+
+.formula-game-session-formula-area {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             0.75rem;
+  min-height:      160px;
+  justify-content: center;
+  padding:         0.5rem 0;
+  margin-top:      -0.5rem;
+}
+
+.formula-game-session-result-row {
+  display:         flex;
+  justify-content: center;
+}
+
+.formula-game-session-evaluation-formula-row {
+  display:     flex;
+  align-items: baseline;
+  gap:         0.6rem;
+  font-size:   1.6rem;
+  font-family: 'Georgia', serif;
+  flex-wrap:   wrap;
+}
+
+.formula-game-session-evaluation-equals-sign {
+  color:       #555;
+  font-weight: bold;
+}
+
+.formula-game-session-notation-bar {
+  display:         flex;
+  gap:             0.75rem;
+  align-items:     flex-start;
+  justify-content: center;
+}
+
+.formula-game-session-submit-row {
+  display:         flex;
+  justify-content: center;
+}
+
+.formula-game-session-draft {
+  width: 100%;
+}

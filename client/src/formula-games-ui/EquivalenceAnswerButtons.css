@@ -1,0 +1,31 @@
+.equivalence-answer-buttons {
+  display:         flex;
+  gap:             1rem;
+  justify-content: center;
+}
+
+.equivalence-btn {
+  padding:        0.75rem 2.2rem;
+  font-size:      1rem;
+  font-weight:    bold;
+  border:         none;
+  border-radius:  6px;
+  cursor:         pointer;
+  letter-spacing: 0.04em;
+  transition:     opacity 0.15s, transform 0.1s;
+}
+
+.equivalence-btn:hover:not(:disabled) {
+  opacity:   0.85;
+  transform: translateY(-1px);
+}
+
+.equivalence-btn:active:not(:disabled) { transform: translateY(0); }
+
+.equivalence-btn:disabled {
+  opacity: 0.35;
+  cursor:  not-allowed;
+}
+
+.equivalence-equal     { background: #2a7a2a; color: #fff; }
+.equivalence-not-equal { background: #a00000; color: #fff; }

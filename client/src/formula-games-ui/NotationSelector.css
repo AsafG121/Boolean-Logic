@@ -1,0 +1,77 @@
+.notation-selector-container {
+  position: relative;
+  display:  inline-block;
+}
+
+.notation-selector-button {
+  display:        flex;
+  align-items:    center;
+  gap:            0.5rem;
+  padding:        0.5rem 1rem;
+  font-size:      0.88rem;
+  font-weight:    500;
+  border:         none;
+  border-radius:  6px;
+  background:     #0f766e;
+  color:          #fff;
+  cursor:         pointer;
+  white-space:    nowrap;
+  transition:     background 0.1s;
+}
+
+.notation-selector-button:hover {
+  background: #0c6560;
+}
+
+.notation-selector-chevron {
+  font-size:  0.6rem;
+  transition: transform 0.2s ease;
+}
+
+.notation-selector-container--open .notation-selector-chevron {
+  transform: rotate(180deg);
+}
+
+/* Panel slides out of the button downward */
+.notation-selector-panel {
+  position:         absolute;
+  top:              calc(100% + 4px);
+  left:             0;
+  min-width:        180px;
+  background:       #fff;
+  border:           1px solid #ccc;
+  border-radius:    6px;
+  box-shadow:       0 4px 14px rgba(0, 0, 0, 0.12);
+  z-index:          200;
+  overflow:         hidden;
+  transform-origin: top center;
+  transform:        scaleY(0);
+  opacity:          0;
+  transition:       transform 0.18s ease, opacity 0.15s ease;
+}
+
+.notation-selector-container--open .notation-selector-panel {
+  transform: scaleY(1);
+  opacity:   1;
+}
+
+.notation-selector-option {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         0.6rem 1rem;
+  font-size:       0.88rem;
+  cursor:          pointer;
+  transition:      background 0.1s;
+}
+
+.notation-selector-option:hover {
+  background: #f0f4ff;
+}
+
+.notation-selector-check {
+  color:      #1a6bb5;
+  font-size:  0.85rem;
+  min-width:  1rem;
+  text-align: right;
+}
